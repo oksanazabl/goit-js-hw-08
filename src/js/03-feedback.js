@@ -25,13 +25,13 @@ function onMsgInput(e) {
   return localStorage.setItem(SAVE_KEY, JSON.stringify(formData));
 }
 
-const parseData = JSON.parse(localStorage.getItem(SAVE_KEY, JSON.stringify(formData)));
+// const parseData = JSON.parse(localStorage.setItem(SAVE_KEY, JSON.stringify(formData)));
 
 function populateTextarea() {
-  const saveMsg = localStorage.getItem(SAVE_KEY);
-  if (saveMsg) {
-    form.email.value = parseData.email;
-
-    form.message.value = parseData.message;
+  const saveMsg = JSON.parse(localStorage.getItem(SAVE_KEY));
+  if (saveMsg === 0) {
+    return;
   }
+  form.email.value.value = saveMsg.email;
+  form.message.value = saveMsg.message;
 }
